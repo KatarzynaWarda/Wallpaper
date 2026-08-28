@@ -89,8 +89,8 @@ fun GenericButton(
 private fun Preview() {
     GenericButton(
         buttonColor = Purple600,
-        buttonTitle = "Z galerii",
-        buttonSubtitle = "Wybierz z telefonu",
+        buttonTitle = "From gallery",
+        buttonSubtitle = "Choose from your device",
         buttonIcon = R.drawable.ic_add_photo,
         onClick = {},
     )

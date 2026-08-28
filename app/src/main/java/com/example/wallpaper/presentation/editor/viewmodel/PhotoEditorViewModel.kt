@@ -103,10 +103,10 @@ class PhotoEditorViewModel(
     private fun contentUiState() = PhotoEditorUiState.Content(
         uri = initialUri,
         prompt = "",
-        title = "Edytuj zdjęcie",
-        textField = "Wprowadź tekst",
-        sendText = "Wyślij",
-        setWallpaperText = "Ustaw jako tapetę",
-        saveInGalleryText = "Zapisz",
+        title = "Edit photo",
+        textField = "Enter a prompt",
+        sendText = "Send",
+        setWallpaperText = "Set as wallpaper",
+        saveInGalleryText = "Save",
     )
 }

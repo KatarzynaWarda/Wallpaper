@@ -206,24 +206,23 @@ fun MainScreenPreview() {
     WallpaperTheme {
         MainScreen(
             saveImage = {},
-            onLinkClick = {},
-            uiState = MainUiState(
-                title = "Kreator Tapet",
-                subtitle = "Stwórz unikalną tapetę z AI",
-                sectionTitle = "Wybierz zdjęcie",
-                sectionSubtitle = "Dodaj obraz, który chcesz przekształcić",
+            onLinkClick = {},uiState = MainUiState(
+                title = "Wallpaper Creator",
+                subtitle = "Create a unique wallpaper with AI",
+                sectionTitle = "Choose a photo",
+                sectionSubtitle = "Add an image you want to transform",
                 wallpaperButtons = listOf(
                     WallpaperButtons(
-                        title = "Z galerii",
-                        subtitle = "Wybierz z telefonu",
+                        title = "From gallery",
+                        subtitle = "Choose from your device",
                     ),
                     WallpaperButtons(
-                        title = "Zrób zdjęcie",
-                        subtitle = "Użyj aparatu",
+                        title = "Take a photo",
+                        subtitle = "Use the camera",
                     ),
                     WallpaperButtons(
-                        title = "Z linku",
-                        subtitle = "Pobierz z internetu",
+                        title = "From the web",
+                        subtitle = "Download from the internet",
                     )
                 )
             )

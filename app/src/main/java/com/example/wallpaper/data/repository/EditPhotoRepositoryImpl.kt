@@ -29,12 +29,12 @@ class EditPhotoRepositoryImpl(
         val imageBytes = if (uri.toUri().scheme?.startsWith("http") == true) {
             val request = Request.Builder().url(uri).build()
             okHttpClient.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) throw Exception("Błąd pobierania obrazu: ${response.code}")
-                response.body?.bytes() ?: throw Exception("Pusty plik obrazu")
+                if (!response.isSuccessful) throw Exception("Failed to download the image: ${response.code}")
+                response.body?.bytes() ?: throw Exception("The image file is empty")
             }
         } else {
             contentResolver.openInputStream(uri.toUri())?.use { it.readBytes() }
-        } ?: throw IllegalArgumentException("Nie można odczytać zdjęcia")
+        } ?: throw IllegalArgumentException("Unable to read the image")
 
         val promptBody = prompt.toRequestBody("text/plain".toMediaType())
         val imageBody = imageBytes.toRequestBody("image/jpeg".toMediaType())

@@ -91,7 +91,7 @@ fun PhotoEditorScreen(
                 )
                 AsyncImage(
                     model = imageUri,
-                    contentDescription = "description",
+                    contentDescription = "image",
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(0.7f),
@@ -112,7 +112,7 @@ fun PhotoEditorScreen(
                         ) {
                             Icon(
                                 painter = painterResource(R.drawable.ic_outline_schedule_send),
-                                contentDescription = "Wyślij"
+                                contentDescription = "send"
                             )
                         }
                     },

@@ -26,7 +26,7 @@ An Android application that allows users to select a photo, transform it using a
 ## Requirements
 
 - Android Studio with support for Android Gradle Plugin 9.0.1
-- JDK 11
+- JDK 17
 - Android SDK 36
 - A device or emulator running Android 10 (API 29) or newer
 - A backend available at `http://10.0.2.2:8080/`
