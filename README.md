@@ -1,48 +1,48 @@
-# Wallpaper — Kreator Tapet
+# Wallpaper — AI Wallpaper Creator
 
-Aplikacja na Androida pozwalająca wybrać zdjęcie, przekształcić je za pomocą opisu tekstowego, zapisać rezultat w galerii oraz ustawić go jako tapetę ekranu głównego i blokady.
+An Android application that allows users to select a photo, transform it using a text prompt, save the result to the device gallery, and set it as the home screen and lock screen wallpaper.
 
-## Funkcje
+## Features
 
-- wybór zdjęcia z galerii urządzenia,
-- wykonanie zdjęcia aparatem,
-- wybór fotografii z katalogu online,
-- edycja obrazu na podstawie tekstowego promptu,
-- zapis gotowego obrazu w galerii,
-- ustawienie obrazu jako tapety ekranu głównego i blokady.
+- Select a photo from the device gallery
+- Take a photo using the camera
+- Choose a photo from an online collection
+- Edit an image using a text prompt
+- Save the resulting image to the gallery
+- Set the image as the home screen and lock screen wallpaper
 
-## Technologie
+## Technologies
 
 - **Kotlin**
-- **Jetpack Compose** i **Material 3**
-- **MVVM** z podziałem na warstwy `presentation`, `domain` i `data`
-- **Koin** — dependency injection
-- **Retrofit**, **OkHttp** i **Gson** — komunikacja z API
-- **Coil** — ładowanie obrazów
-- **Coroutines** oraz **StateFlow** — operacje asynchroniczne i stan interfejsu
-- **Navigation Compose** — nawigacja między ekranami
-- **MediaStore** i **WallpaperManager** — zapis oraz ustawianie tapety
+- **Jetpack Compose** and **Material 3**
+- **MVVM** with `presentation`, `domain`, and `data` layers
+- **Koin** for dependency injection
+- **Retrofit**, **OkHttp**, and **Gson** for API communication
+- **Coil** for image loading
+- **Coroutines** and **StateFlow** for asynchronous operations and UI state management
+- **Navigation Compose** for screen navigation
+- **MediaStore** and **WallpaperManager** for saving and setting wallpapers
 
-## Wymagania
+## Requirements
 
-- Android Studio z obsługą Android Gradle Plugin 9.0.1,
-- JDK 11,
-- Android SDK 36,
-- urządzenie lub emulator z Androidem 10 (API 29) albo nowszym,
-- backend dostępny pod adresem `http://10.0.2.2:8080/`.
+- Android Studio with support for Android Gradle Plugin 9.0.1
+- JDK 11
+- Android SDK 36
+- A device or emulator running Android 10 (API 29) or newer
+- A backend available at `http://10.0.2.2:8080/`
 
-Adres `10.0.2.2` wskazuje z emulatora Androida na komputer, na którym uruchomiony jest backend. Podczas testowania na fizycznym urządzeniu należy zmienić `baseUrl` w `NetworkModule.kt` na adres IP komputera w tej samej sieci.
+The `10.0.2.2` address allows the Android emulator to access the computer running the backend. When testing on a physical device, change the `baseUrl` in `NetworkModule.kt` to the computer’s local IP address. Both devices must be connected to the same network.
 
-## Wymagane endpointy backendu
+## Required Backend Endpoints
 
-Aplikacja oczekuje dwóch endpointów:
+The application expects two endpoints:
 
-| Metoda | Endpoint | Działanie |
+| Method | Endpoint | Description |
 |---|---|---|
-| `GET` | `/photography?q=nature&image_type=photo` | Zwraca listę zdjęć w formacie odpowiedzi Pixabay |
-| `POST` | `/edit-image` | Przyjmuje `multipart/form-data` z polami `prompt` i `image`, a następnie zwraca adres zmodyfikowanego obrazu |
+| `GET` | `/photography?q=nature&image_type=photo` | Returns a list of photos using the Pixabay response format |
+| `POST` | `/edit-image` | Accepts `multipart/form-data` containing `prompt` and `image`, then returns the URL of the edited image |
 
-Przykładowa odpowiedź endpointu `/edit-image`:
+Example response from `/edit-image`:
 
 ```json
 {
@@ -50,29 +50,29 @@ Przykładowa odpowiedź endpointu `/edit-image`:
 }
 ```
 
-Kod backendu nie znajduje się w tym repozytorium.
+The backend source code is not included in this repository.
 
-## Uprawnienia
+## Permissions
 
-Aplikacja korzysta z następujących uprawnień:
+The application uses the following Android permissions:
 
-- `CAMERA` — wykonywanie zdjęć,
-- `INTERNET` — pobieranie i edycja obrazów,
-- `SET_WALLPAPER` oraz `SET_WALLPAPER_HINTS` — ustawianie tapety.
+- `CAMERA` — taking photos
+- `INTERNET` — downloading and editing images
+- `SET_WALLPAPER` and `SET_WALLPAPER_HINTS` — setting the device wallpaper
 
-## Struktura projektu
+## Project Structure
 
 ```text
 app/src/main/java/com/example/wallpaper/
-├── data/          # API, DTO, mapery i implementacje repozytoriów
-├── di/            # moduły Koin
-├── domain/        # modele, interfejsy repozytoriów i przypadki użycia
-├── navigation/    # definicje ekranów i tras
-└── presentation/  # ekrany Compose, ViewModele i stany UI
+├── data/          # APIs, DTOs, mappers, and repository implementations
+├── di/            # Koin modules
+├── domain/        # Models, repository interfaces, and use cases
+├── navigation/    # Screen and route definitions
+└── presentation/  # Compose screens, ViewModels, and UI states
 ```
 
-Główne ekrany aplikacji:
+The application contains three main screens:
 
-- **Main** — wybór źródła obrazu,
-- **Photos** — katalog fotografii online,
-- **Editor** — podgląd, edycja, zapis i ustawienie tapety.
+- **Main** — image source selection
+- **Photos** — online photo collection
+- **Editor** — image preview, editing, saving, and wallpaper setup
