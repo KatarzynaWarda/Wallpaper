@@ -2,8 +2,7 @@ package com.example.wallpaper.data.mapper
 
 import com.example.wallpaper.data.dto.PhotographyDto
 import com.example.wallpaper.domain.model.Photography
-import junit.framework.TestCase.assertEquals
-import org.junit.Before
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class PhotographyMapperTest {
@@ -18,14 +17,8 @@ class PhotographyMapperTest {
         const val USER_IMAGE_URL = "userImageURL"
     }
 
-    private lateinit var mapper: PhotographyMapper
-    private lateinit var photographyDto: PhotographyDto
-    private lateinit var photography: Photography
-
-    @Before
-    fun setUp() {
-        mapper = PhotographyMapper()
-        photographyDto = PhotographyDto(
+    private val mapper = PhotographyMapper()
+    private val photographyDto = PhotographyDto(
             id = ID,
             previewURL = PREVIEW_URL,
             webformatURL = WEBFORMAT_URL,
@@ -33,20 +26,19 @@ class PhotographyMapperTest {
             tags = TAGS,
             user = USER,
             userImageURL = USER_IMAGE_URL,
-        )
-        photography = Photography(
+    )
+    private val photography = Photography(
             id = ID,
             url = LARGE_IMAGE_URL,
             previewUrl = PREVIEW_URL,
             tags = listOf("1", "2"),
             author = USER,
-        )
-    }
+    )
 
     @Test
-    fun `return correct Photography`() {
-
+    fun `returns mapped photography`() {
         val result = mapper(photographyDto)
+
         assertEquals(photography, result)
     }
 }

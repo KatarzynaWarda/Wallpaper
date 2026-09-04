@@ -2,6 +2,7 @@ package com.example.wallpaper.data.image
 
 import android.content.Context
 import android.util.Log
+import com.example.wallpaper.TestData.URI
 import coil3.Bitmap
 import coil3.ImageLoader
 import coil3.SingletonImageLoader
@@ -14,22 +15,18 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
-import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.test.runTest
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
 @OptIn(DelicateCoilApi::class)
 class ImageRepositoryImplTest {
 
-    private companion object {
-        const val URI = "uri"
-    }
-
-    private lateinit var context: Context
-    private lateinit var imageLoader: ImageLoader
-    private lateinit var repository: ImageRepositoryImpl
+    private val context = mockk<Context>(relaxed = true)
+    private val imageLoader = mockk<ImageLoader>()
+    private val repository = ImageRepositoryImpl(context)
 
     @Before
     fun setUp() {
@@ -37,10 +34,7 @@ class ImageRepositoryImplTest {
 
         every { Log.d(any(), any()) } returns 0
 
-        context = mockk(relaxed = true)
-        imageLoader = mockk()
         SingletonImageLoader.setUnsafe(imageLoader)
-        repository = ImageRepositoryImpl(context)
     }
 
     @Test
